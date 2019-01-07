@@ -3,6 +3,7 @@ A Slack bot for personalized, filtered and trackable arXiv output.
 
 
 ## Installation:
+- `pip install slackclient`
 - Get the tokens from slack (Agustin?)
 - Add the token to config.py and set your preference.
 - Call paperbot.py, you can have it run in the backgroud by calling:
