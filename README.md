@@ -1,5 +1,5 @@
-# xquadbot
-Slack bot for personalized, filtered and trackable arXiv output.
+# paperbot
+A Slack bot for personalized, filtered and trackable arXiv output.
 
 
 ## Installation:
