@@ -1,10 +1,8 @@
 import os
-# Slack Client Token
+# bot user oauth access token
 SLACK_BOT_TOKEN = 'xoxb-012345678901-NNNNNNNNNNNNNNNNNNNNNNNN'
 #SLACK_BOT_TOKEN = os.environ.get('SLACK_BOT_TOKEN')
-# Slack token for the bot
-BOT_ID = 'NNNNNNNNN'
-#BOT_ID = os.environ.get("BOT_ID")
+
 # Slack token for the channel in which the bot write auto commands
 BOT_CHANNEL = 'NNNNNNNNN'
 

@@ -1,4 +1,5 @@
 import os
+import re
 import time
 import config
 import websocket
@@ -10,6 +11,8 @@ from collections import Counter
 from slackclient import SlackClient
 from commands import create_commands
 from arxivreader import print_arxiv_paper, all_arxiv_section, get_author_list_arxiv
+
+MENTION_REGEX = "^<@(|[WU].+?)>(.*)"
 
 def time_as_int(tm):
     return int(tm[0:2])*60**2+int(tm[3:5])*60+int(tm[6:8])
@@ -29,13 +32,6 @@ try:
 except:
     np.save('prefered_keywords.npy',np.array([["","xquatbot",""]], dtype=str))
 
-# Check the config and fill missing info
-if "BOT_ID" in config.__dict__:
-    BOT_ID = config.BOT_ID
-else:
-    BOT_ID = False
-    print("No BOT_ID given\n"
-          "The bot will not connect to slack")
 
 if "SLACK_BOT_TOKEN" in config.__dict__:
     SLACK_BOT_TOKEN = config.SLACK_BOT_TOKEN
@@ -334,21 +330,33 @@ def handle_command(commandline, slack):
         slack.post(response)
 
 
-def parse_slack_output(AT_BOT, slack_rtm_output):
+def parse_bot_commands(bot_id, slack_events):
     """
-        The Slack Real Time Messaging API is an events firehose.
-        this parsing function returns None unless a message is
-        directed at the Bot, based on its ID.
+        Parses a list of events coming from the Slack RTM API to
+        find bot commands. If a bot command is found, this function
+        returns a tuple of command and channel.
+        If its not found, then this function returns None, None.
+        From the tutorial:
+        https://www.fullstackpython.com/blog/build-first-slack-bot-python.html
     """
-    output_list = slack_rtm_output
-    if output_list and len(output_list) > 0:
-        for output in output_list:
-            if output and 'text' in output and AT_BOT in output['text']:
-                # return text after the @ mention, whitespace removed
-                return output['text'].split(AT_BOT)[1].strip().lower(), \
-                       output['channel']
+    for event in slack_events:
+        if event["type"] == "message" and not "subtype" in event:
+            user_id, message = parse_direct_mention(event["text"])
+            if user_id == bot_id:
+                return message, event["channel"]
     return None, None
 
+def parse_direct_mention(message_text):
+    """
+        Finds a direct mention (a mention that is at the beginning)
+        in message text and returns the user ID which was mentioned.
+        If there is no direct mention, returns None
+        From the tutorial:
+        https://www.fullstackpython.com/blog/build-first-slack-bot-python.html
+    """
+    matches = re.search(MENTION_REGEX, message_text)
+    # the first group contains the username, the second group contains the remaining message
+    return (matches.group(1), matches.group(2).strip()) if matches else (None, None)
 
 class slackChannel:
     def __init__(self, slack_client, channel):
@@ -364,14 +372,16 @@ if __name__ == "__main__":
     READ_WEBSOCKET_DELAY = 1 # 1 second delay between reading from firehose
     # instantiate Slack & Twilio clients
     slack_client = SlackClient(SLACK_BOT_TOKEN)
+
     if slack_client.rtm_connect():
         print("paperbot connected and running!")
-        AT_BOT = "<@" + config.BOT_ID + ">"
+        bot_id = slack_client.api_call("auth.test")["user_id"]
         prev2num = time_as_int(time.strftime("%H-%M-%S"))-1
         # read commands
         while True:
             try:
-                command, channel = parse_slack_output(AT_BOT, slack_client.rtm_read())
+                command, channel = parse_bot_commands(bot_id,
+                                                      slack_client.rtm_read())
                 if command and channel:
                     post_destination = slackChannel(slack_client, channel)
                     handle_command(command, post_destination)
