@@ -4,6 +4,7 @@ A Slack bot for personalized, filtered and trackable arXiv output.
 
 ## Installation:
 - `pip install slackclient`
+- Create a [Slack App] (https://api.slack.com/apps?new_app=1), choosing the app's name (paperbot) and selecting your workspace. Under the "Features" section, select "Bot users" and then save changes. Under "Settings" click on "Install App" and select the channel in which the bot should post. Copy your "Salck Bot OAuth Access Token" as `SLACK_BOT_TOKEN`.
 - Get the tokens from slack (Agustin?)
 - Add the token to config.py and set your preference.
 - Call paperbot.py, you can have it run in the backgroud by calling:
