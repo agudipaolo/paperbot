@@ -26,7 +26,7 @@ In `config.py`, change the variable `arxiv_sections=[quant-ph, cond-mat]` to inc
 
 **Define your favourite authors to be hightlighted**
 
-The names of your favourite authors are stored in the array `prefered_keywords.npy`. If a paper to be posted included one of such authors, the paper will be highlighted with symbols that you can choose. For instance, executing on Slack the command "@paperbot add_special xxalexandre xxblais, :tada:, :tada:" will highlight papers authored by Alexandre Blais with :tada:. 
+The names of your favourite authors are stored in the array `prefered_keywords.npy`. If a paper to be posted included one of such authors, the paper will be highlighted with symbols that you can choose. For instance, executing on Slack the command "@paperbot add_special alexandre blais, :tada:, :tada:" will highlight papers authored by Alexandre Blais with :tada:. Note that `paperbot` performs a case-insensitive search.
 
 **Build the authors and keywords list**
 
