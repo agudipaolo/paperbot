@@ -16,15 +16,19 @@ A Slack bot for personalized, filtered and trackable arXiv output.
 ## Customization:
 
 **Automatic posts**
+
 In `config.py`, choose the time of the automatic posts by modifying the variable `auto_commands`.
 
 **Choose the default arXiv sections to look at**
+
 In `config.py`, change the variable arxiv_sections=[quant-ph, cond-mat] for the ones you want to monitor.
 
 **Build the authors and keywords list**
+
 Pick few root keywords such as 'superconducting qubits' and 'quantum optics'.
 
 **Hightlight your favourite authors**
+
 
 ## Usage:
 You can call the bot using "@paperbot paper" so that it print todays' arxiv
