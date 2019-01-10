@@ -2,7 +2,6 @@
 A Slack bot for personalized, filtered and trackable arXiv output.
 
 ## Installation:
-- Get admin/owner permissions of the Slack workspace where you want to install paperbot. 
 - Web sign in to your slack workspace and user [Slack app](https://slack.com).
 - Create a new Slack App [here](https://api.slack.com/apps?new_app=1). In the pop-up window, set 'paperbot' as **App Name** and choose your **Development Slack Workspace**. 
 - Choose **paperbot** [here](https://api.slack.com/apps/), and click on **Bot Users** from the menu at the left below "Features". Now select **Add a Bot User** and choose the bot's **Display name**. Finally click on **Add Bot User** and **Save Changes**.
