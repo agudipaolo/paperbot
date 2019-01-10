@@ -21,7 +21,7 @@ A Slack bot for personalized, filtered and trackable arXiv output.
 
 In `config.py`, choose the time of the automatic posts by modifying the variable `auto_commands`. By default, the command "todays" is executed every weekday at 08:30 AM (local time), and the command "home" can be configured to print at some other time. We recommend to delete the example line `("13:30:00", ['Mon', 'Wed', 'Fri'], "home")`.
 
-**Choose the default arXiv sections to look at**
+**Choose the default arXiv sections to monitor**
 
 In `config.py`, change the variable `arxiv_sections=[quant-ph, cond-mat]` to include the arXiv sections you want to monitor. 
 
