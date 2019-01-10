@@ -19,23 +19,23 @@ A Slack bot for personalized, filtered and trackable arXiv output.
 
 **Automatic daily posts**
 
-In `config.py`, choose the time of the automatic posts by modifying the variable `auto_commands`. By default, the command "todays" is executed every weekday at 08:30 AM (local time), and the command "home" can be configured to print at some other time. We recommend to delete the example line `("13:30:00", ['Mon', 'Wed', 'Fri'], "home")`.
+In `config.py`, choose the time of the automatic posts by modifying the variable `auto_commands`. By default, the command "todays" is executed every weekday at 08:30 AM (local time), and the command "home" can be configured to print at some other time. We recommend to comment the line `("13:30:00", ['Mon', 'Wed', 'Fri'], "home")` which is there as an example.
 
 **Choose the default arXiv sections to monitor**
 
 In `config.py`, change the variable `arxiv_sections=[quant-ph, cond-mat]` to include the arXiv sections you want to monitor. 
 
-**Define your favourite authors to be hightlighted**
-
-`parperbot` stores the names of your favourite authors. If a new arXiv preprint includes one or more of such names, `paperbot` will post it highlighting the message with symbols that you can choose. For instance, executing on Slack the command "@paperbot add_special michel devoret, :tada:, :tada:" stores 'Michel Devoret' as favourite author. Note that `paperbot` performs a case-insensitive search. Next time that a preprint is submitted with him as an author, it will be posted and highlighted with :tada:. 
-
 **Build the keywords and authors list**
 
-`paperbot` stores keywords that are used to identify interesting preprints. The keywords list can be build manually by executing the command "@paperbot add some_keyword" on Slack. This adds some_keyword to your keywords list, which can be printed executing "@paperbot list" on Slack.
+Paperbot stores keywords that are used to identify interesting preprints. The keywords list can be build manually by executing the command `@paperbot add some_keyword` on Slack. This adds some_keyword to your keywords list, which can be printed executing "@paperbot list" on Slack.
 
-`paperbot` also includes an authors list which can be built manually. This is done by executing the command "@paperbot add_author some_author" on Slack. Executing "@paperbot authors" on Slack prints the authors list. 
+Paperbot also includes an authors list which can be built manually. This is done by executing the command `@paperbot add_author some_author` on Slack. Executing `@paperbot authors` on Slack prints the authors list. 
 
-Importantly, `paperbot` provides a method to generate the author list automatically. This is a **key** step to build a powerful preprint filter. It requires the definition of a few root keywords, such as 'superconducting qubit', 'quantum optics', and 'quantum information'. Executing the command "@paperbot build _2018_ ['superconducting qubit', 'quantum optics', 'quantum information'] threshold" on Slack, `paperbot` searchs day-by-day over all arXiv papers submitted in _2018_, and saves the name of the authors that have at least a _threshold_ number of papers including any of the root keywords in its title or abstract. The result of further executions of the `build` command is always appended to the author list. In particular, running `build` every new year keeps the author list up-to-date.
+Paperbot provides a method to generate the author list automatically. This is an important feature that helps to easily build a powerful preprint filter. It requires the definition of a few root keywords, such as 'superconducting qubit', 'quantum optics', and 'quantum information'. Executing the command `@paperbot build _2018_ ['superconducting qubit', 'quantum optics', 'quantum information'] threshold` on Slack, paperbot searchs day-by-day over all arXiv papers submitted in _2018_, and saves the name of the authors that have at least a _threshold_ number of papers including any of the root keywords in its title or abstract. The result of further executions of the `build` command is always appended to the author list. In particular, running `build` every new year keeps the author list up-to-date.
+
+**Define your favourite authors to be hightlighted**
+
+`parperbot` stores the names of your favourite authors. If a new arXiv preprint includes one or more of such names, `paperbot` will highlight the preprint with symbols that you can choose. For instance, executing on Slack the command 1@paperbot add_special michel devoret, :tada:, :tada:" stores 'Michel Devoret' as favourite author. Note that `paperbot` performs a case-insensitive search. Next time that a preprint is submitted with him as an author, it will be posted and highlighted with :tada:. Note that your favourite authors must also be included in the authors list. 
 
 ## Usage:
 
