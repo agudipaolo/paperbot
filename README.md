@@ -12,7 +12,7 @@ A Slack bot for personalized, filtered and trackable arXiv output.
 - Install slackclient by executing `pip install slackclient` on a terminal.
 - Clone the paperbot GitHub repository to your machine. 
 - Do `cd` to the `paperbot` folder in the cloned repository, open `config.py` and change the variables `SLACK_BOT_TOKEN` and `CHANNEL_ID` by the previously saved **Bot User OAuth Access Token** and **CHANNEL_ID**, respectively.
-- Done! Execute the bot by doing `python paperbot.py`, or in the background by doing `nohup python paperbot.py > custom-out.log &`.
+- Done! Execute the bot by doing `python paperbot.py` or, in the background, by doing `nohup python paperbot.py > custom-out.log &`.
 - Note that you can also command paperbot by private messages. You will find the app in the 'Apps' menu bellow the 'Direct Messages' menu of your Slack Desktop application.
 
 ## Customization:
