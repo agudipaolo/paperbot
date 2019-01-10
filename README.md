@@ -39,13 +39,10 @@ Parperbot can store the names of your favourite authors. If a new arXiv preprint
 
 ## Usage:
 
-Doing `@paperbot paper` on Slack prints todays' arxiv papers. The full call is `@paperbot paper sections=[quant-ph, cond-mat] keywords=[qubit, superconductor] author=[A. Blais, Michel Devoret] span=1`. Here, the output shows only arXvi preprints from the arXiv sections 'sections', containing the keywords 'keywords' in their titles or abstracts and from the authors 'authors'. Span is the number of days from today to fetch papers. You can also set the span as dates: begin=YYYY-MM-DD end=YYYY-MM-DD.
+Doing `@paperbot paper` on Slack prints todays' arxiv papers. The full call is `@paperbot paper sections=[quant-ph, cond-mat] keywords=[qubit, superconductor] author=[A. Blais, Michel Devoret] span=1`. Here, the command output shows arXiv preprints from the sections 'sections', containing the keywords 'keywords' from the authors 'authors'. Span is the number of days from today to fetch papers. You can also set the span as dates: begin=YYYY-MM-DD end=YYYY-MM-DD.
 
-When not specificly given, keywords and authors are taken from internal keywords lists.
-You can see and add elements to those lists with: "add","list","add_author","authors".
+When not specificly given, keywords and authors are taken from internal keywords lists. You can see and add elements to those lists with: "add","list","add_author","authors".
 
-Take a look at `config.py`, where you can set shortcut for prefered options, change the calls and set commands to be at set times.
-
-For more information, execute `@paperbot help` on Slack!
+Take a look at `config.py`, where you can set shortcut for prefered options, change the calls and set commands to be at set times. For more information, execute `@paperbot help` on Slack!
 
 by [TheSQuaD team](https://www.physique.usherbrooke.ca/blais/index.php?sec=accueil&lan=EN) (Theory of Superconducting Quantum Devices).
