@@ -10,10 +10,10 @@ A Slack bot for personalized, filtered and trackable arXiv output.
 - In the current window, choose **Install App** from the menu at the left below "Settings". Click on **Install App to Workspace** and **Authorize**. Copy the **Bot User OAuth Access Token** and save it somewhere to use later. 
 - Open the web-based [Slack App](https://slack.com) corresponding to your workspace and create a new channel. Invite `paperbot` to this channel as if you were inviting another workspace user to it. If you now click on the address bar of your web browser, you will note that it looks like this: https://yourworkspace.slack.com/messages/CHANNEL_ID/something_else. Copy the **CHANNEL_ID** variable and save it somewhere to use later.
 - Install slackclient by executing `pip install slackclient` on a terminal.
-- Clone the `paperbot` GitHub repository to your machine. 
-- `cd` to the `paperbot` folder in the cloned repository, and open `config.py`. Change the variables `SLACK_BOT_TOKEN` and `CHANNEL_ID` by the previously saved **Bot User OAuth Access Token** and **CHANNEL_ID**, respectively.
+- Clone the paperbot GitHub repository to your machine. 
+- Do `cd` to the `paperbot` folder in the cloned repository, open `config.py` and change the variables `SLACK_BOT_TOKEN` and `CHANNEL_ID` by the previously saved **Bot User OAuth Access Token** and **CHANNEL_ID**, respectively.
 - Done! Execute the bot by doing "python paperbot.py", or in the background by doing "nohup python paperbot.py > custom-out.log &".
-- Note that you can also command `paperbot` by private messages. You will find the app in the Apps menu bellow the Direct Messages menu of your Slack Desktop application.
+- Note that you can also command paperbot by private messages. You will find the app in the 'Apps' menu bellow the 'Direct Messages' menu of your Slack Desktop application.
 
 ## Customization:
 
