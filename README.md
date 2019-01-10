@@ -35,29 +35,17 @@ Paperbot provides a method to generate the author list automatically. This is an
 
 **Define your favourite authors to be hightlighted**
 
-`parperbot` stores the names of your favourite authors. If a new arXiv preprint includes one or more of such names, `paperbot` will highlight the preprint with symbols that you can choose. For instance, executing on Slack the command 1@paperbot add_special michel devoret, :tada:, :tada:" stores 'Michel Devoret' as favourite author. Note that `paperbot` performs a case-insensitive search. Next time that a preprint is submitted with him as an author, it will be posted and highlighted with :tada:. Note that your favourite authors must also be included in the authors list. 
+Parperbot can store the names of your favourite authors. If a new arXiv preprint includes one or more of such names, paperbot highlights the preprint with symbols that you can choose. For instance, executing on Slack the command `@paperbot add_special michel devoret, :tada:, :tada:` stores 'Michel Devoret' as favourite author. Next time that a preprint is submitted with him as an author, it will be posted and highlighted with :tada:. Note that your favourite authors must also be included in the authors list, and that paperbot performs a case-insensitive search. 
 
 ## Usage:
 
-You can call  using "@paperbot paper" so that it print todays' arxiv
-papers. The full call is
-
-@paperbot paper sections=[quant-ph, cond-mat] keywords=[qubit, superconductor]
-author=[A. Blais, Michel Devoret] span=1
-span is the number of days from today to fetch papers.
-You can also set the span as dates: begin=YYYY-MM-DD end=YYYY-MM-DD.
+Doing `@paperbot paper` on Slack prints todays' arxiv papers. The full call is `@paperbot paper sections=[quant-ph, cond-mat] keywords=[qubit, superconductor] author=[A. Blais, Michel Devoret] span=1`. Here, the output shows only arXvi preprints from the arXiv sections 'sections', containing the keywords 'keywords' in their titles or abstracts and from the authors 'authors'. Span is the number of days from today to fetch papers. You can also set the span as dates: begin=YYYY-MM-DD end=YYYY-MM-DD.
 
 When not specificly given, keywords and authors are taken from internal keywords lists.
 You can see and add elements to those lists with: "add","list","add_author","authors".
 
-You can ask the bot to highlight some paper by adding the related keywords
-in the prefered keywords list:
-"@paperbot add_special me, \:tada:, \:tada:"
+Take a look at `config.py`, where you can set shortcut for prefered options, change the calls and set commands to be at set times.
 
-In config.py, you can set shortcut for prefered options, change the calls
-and set commands to be at set times.
-
-**Help**
-Execute "@paperbot help" on Slack to access to more `paperbot` commands and details. 
+For more information, execute `@paperbot help` on Slack!
 
 by [TheSQuaD team](https://www.physique.usherbrooke.ca/blais/index.php?sec=accueil&lan=EN) (Theory of Superconducting Quantum Devices).
