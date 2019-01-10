@@ -4,14 +4,14 @@ A Slack bot for personalized, filtered and trackable arXiv output.
 
 ## Installation:
 
-- Web sign in to your slack workspace and user [Slack app](https://slack.com).
-- Create a new Slack App [here](https://api.slack.com/apps?new_app=1). In the pop-up window, set 'paperbot' as **App Name** and choose your **Development Slack Workspace**. 
-- Choose **paperbot** [here](https://api.slack.com/apps/), and click on **Bot Users** from the menu at the left below "Features". Now select **Add a Bot User** and choose the bot's **Display name**. Finally click on **Add Bot User** and **Save Changes**.
-- In the same webpage, now choose **Install App** from the menu at the left below "Settings". Then click on **Install App to Workspace** and **Authorize**. Copy the **Bot User OAuth Access Token** and save it somewhere to use later. 
-- Open the web-based [Slack app](https://slack.com) corresponding to your workspace and create a new channel. The name of this channel could be `arxivbot` or something else. Now invite `paperbot` to this channel, as if you were inviting a workspace user. Note that the address bar of your web browser looks like this: https://yourworkspace.slack.com/messages/CHANNEL_ID/something_else. Copy the **CHANNEL_ID** variable and save it somewhere to use later.
+- To start, [web sign in](https://slack.com) to your user account corresponding to the Slack workspace where you would like to install `paperbot`.
+- Create a [new Slack App](https://api.slack.com/apps?new_app=1). In the pop-up window, set 'paperbot' as **App Name** and choose your **Development Slack Workspace**. 
+- Choose **paperbot** in the [Apps page](https://api.slack.com/apps/), and click on **Bot Users** from the menu at the left below "Features". Now select **Add a Bot User** and choose the bot's **Display name**. Finally click on **Add Bot User** and **Save Changes**.
+- In the current window, choose **Install App** from the menu at the left below "Settings". Click on **Install App to Workspace** and **Authorize**. Copy the **Bot User OAuth Access Token** and save it somewhere to use later. 
+- Open the web-based [Slack app](https://slack.com) corresponding to your workspace and create a new channel. The name of this channel could be `arxivbot` or something else. Now, invite `paperbot` to this channel, as if you were inviting another workspace user to it. Clicking on the address bar of your web browser, you will note that it looks like this: https://yourworkspace.slack.com/messages/CHANNEL_ID/something_else. Copy the **CHANNEL_ID** variable and save it somewhere to use later.
 - Install slackclient by executing `pip install slackclient` on a terminal.
-- Now clone the `paperbot` GitHub repository to your machine. 
-- In the `paperbot` folder, open `config.py` and change the variables `SLACK_BOT_TOKEN` and `CHANNEL_ID` by your previously saved **Bot User OAuth Access Token** and **CHANNEL_ID**, respectively.
+- Clone the `paperbot` GitHub repository to your machine. 
+- `cd` to the `paperbot` folder of the cloned repository, and open `config.py`. Change the variables `SLACK_BOT_TOKEN` and `CHANNEL_ID` by the previously saved **Bot User OAuth Access Token** and **CHANNEL_ID**, respectively.
 - Done! Execute the bot by doing "python paperbot.py", or in the background by doing "nohup python paperbot.py > custom-out.log &".
 - Note that you can also command `paperbot` by private messages. You will find the app in the Apps menu bellow the Direct Messages menu of your Slack Desktop application.
 
@@ -27,13 +27,13 @@ In `config.py`, change the variable `arxiv_sections=[quant-ph, cond-mat]` to inc
 
 **Define your favourite authors to be hightlighted**
 
-`parperbot` stores the names of your favourite authors. If a new arXiv preprint includes one or more of such names, `paperbot` will post it highlighting the message with symbols that you can choose. For instance, executing on Slack the command "@paperbot add_special alexandre blais, :tada:, :tada:" stores 'Alexandre Blais' as favourite author. Note that `paperbot` performs a case-insensitive search. Next time that a preprint is submitted with him as an author, it will be posted and highlighted with :tada:. 
+`parperbot` stores the names of your favourite authors. If a new arXiv preprint includes one or more of such names, `paperbot` will post it highlighting the message with symbols that you can choose. For instance, executing on Slack the command "@paperbot add_special michel devoret, :tada:, :tada:" stores 'Michel Devoret' as favourite author. Note that `paperbot` performs a case-insensitive search. Next time that a preprint is submitted with him as an author, it will be posted and highlighted with :tada:. 
 
 **Build the keywords and authors list**
 
-`paperbot` stores keywords that are used to identify interesting preprints. The keywords list can be build manually, by executing on Slack the command "@paperbot add some_keyword". This will add some_keyword to the list of all your keywords. To print your keywords list execute "@paperbot list" on Slack.
+`paperbot` stores keywords that are used to identify interesting preprints. The keywords list can be build manually by executing the command "@paperbot add some_keyword" on Slack. This adds some_keyword to your keywords list, which can be printed executing "@paperbot list" on Slack.
 
-In addition, `paperbot` includes an authors list which can also be built manually. This is done by executing the command "@paperbot add_author some_author" on Slack. Executing "@paperbot authors" on Slack prints the authors list. 
+`paperbot` also includes an authors list which can be built manually. This is done by executing the command "@paperbot add_author some_author" on Slack. Executing "@paperbot authors" on Slack prints the authors list. 
 
 Importantly, `paperbot` provides a method to generate the author list automatically. This is a **key** step to build a powerful preprint filter. It requires the definition of a few root keywords, such as 'superconducting qubit', 'quantum optics', and 'quantum information'. Executing the command "@paperbot build _2018_ ['superconducting qubit', 'quantum optics', 'quantum information'] threshold" on Slack, `paperbot` searchs day-by-day over all arXiv papers submitted in _2018_, and saves the name of the authors that have at least a _threshold_ number of papers including any of the root keywords in its title or abstract. The result of further executions of the `build` command is always appended to the author list. In particular, running `build` every new year keeps the author list up-to-date.
 
