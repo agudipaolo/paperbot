@@ -45,6 +45,8 @@ When not specificly given, keywords and authors are taken from internal keywords
 
 Note that for unknown reasons, paperbot Salck App status might appear as 'offline' while being online and working correctly. 
 
+A preview of the links posted by paperbot will appear by default on Slack. This feature can be [disabled individually](https://get.slack.help/hc/en-us/articles/204399343-Share-links-and-set-preview-preferences) by the workspace users, or [fully deactivated](https://get.slack.help/hc/en-us/articles/360001502048-Manage-link-previews-for-your-workspace) by the workspace administrator. 
+
 Take a look at `config.py`, where you can set shortcut for prefered options, change the calls and set commands to be at set times. For more information, execute `@paperbot help` on Slack!
 
 by [TheSQuaD team](https://www.physique.usherbrooke.ca/blais/index.php?sec=accueil&lan=EN) (Theory of Superconducting Quantum Devices).
