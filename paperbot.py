@@ -373,7 +373,7 @@ if __name__ == "__main__":
     # instantiate Slack & Twilio clients
     slack_client = SlackClient(SLACK_BOT_TOKEN)
 
-    if slack_client.rtm_connect():
+    if slack_client.rtm_connect(auto_reconnect=True):
         print("paperbot connected and running!")
         bot_id = slack_client.api_call("auth.test")["user_id"]
         prev2num = time_as_int(time.strftime("%H-%M-%S"))-1
@@ -396,7 +396,7 @@ if __name__ == "__main__":
                 time.sleep(READ_WEBSOCKET_DELAY)
             except WebSocketConnectionClosedException:
                 print("Lost connection to Slack. Reconnecting...")
-                if not slack_client.rtm_connect():
+                if not slack_client.rtm_connect(auto_reconnect=True):
                     print("Failed to reconnect to Slack")
                     time.sleep(0.5)
                 else:
