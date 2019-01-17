@@ -18,24 +18,26 @@ def get_arxiv_paper(date, days_back, section):
         print("")
         days_back -= 1
         date_obj = date_obj + timedelta(days=-1)
-    if days_back:
-        with shelve.open("arxiv.papers") as arxivDB:
-            for days in range(days_back):
-                date_iter = date_obj + timedelta(days=-days)
-                date_str = date_iter.strftime("%Y-%m-%d")
-                if date_str in arxivDB and section in arxivDB[date_str]:
-                    papers += arxivDB[date_str][section]
+    while days_back:
+        prev_year = date_obj.strftime("%Y")
+        shelve_file_name = "arxivpapers_" + section + "_" \
+                         + prev_year +".dat"
+        with shelve.open(shelve_file_name) as arxivDB:
+            while days_back:
+                date_str = date_obj.strftime("%Y-%m-%d")
+                if date_str in arxivDB:
+                    papers += arxivDB[date_str]
                 else:
                     paper_iter = get_paper_from_arxiv(date_str, 1, section)
                     print(" saving!")
-                    if date_str not in arxivDB:
-                        arxivDB[date_str] = {section:paper_iter}
-                    else:
-                        dict_day = arxivDB[date_str]
-                        dict_day[section] = paper_iter
-                        arxivDB[date_str] = dict_day
-                    arxivDB[date_str][section] = paper_iter
+                    arxivDB[date_str] = paper_iter
                     papers += paper_iter
+                date_obj = date_obj + timedelta(days=-1)
+                days_back -= 1
+                new_year = date_obj.strftime("%Y")
+                if new_year != prev_year:
+                    break
+
     return papers
 
 
