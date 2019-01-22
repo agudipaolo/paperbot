@@ -377,8 +377,11 @@ if __name__ == "__main__":
         print("paperbot connected and running!")
         bot_id = slack_client.api_call("auth.test")["user_id"]
         prev2num = time_as_int(time.strftime("%H-%M-%S"))-1
+        error_level = 0
+        retry_delay = 1
+        max_error = 1000
         # read commands
-        while True:
+        while error_level < max_error:
             try:
                 command, channel = parse_bot_commands(bot_id,
                                                       slack_client.rtm_read())
@@ -389,17 +392,32 @@ if __name__ == "__main__":
                 now2num  = time_as_int(time.strftime("%H-%M-%S"))
                 today_char = datetime.now().strftime('%a')
                 for run_time, days, command in auto_commands:
-                    if (prev2num-run_time) < 0  and (now2num-run_time) >= 0:
-                        if today_char in days and BOT_CHANNEL:
-                            handle_command(command, BOT_CHANNEL)
+                    run_now = ((prev2num-run_time) < 0 and
+                              (now2num-run_time) >= 0 and
+                               today_char in days)
+                    if run_now and BOT_CHANNEL:
+                        post_destination = slackChannel(slack_client,
+                                                        BOT_CHANNEL)
+                        handle_command(command, post_destination)
                 prev2num = now2num
                 time.sleep(READ_WEBSOCKET_DELAY)
-            except WebSocketConnectionClosedException:
+                retry_delay = 1
+            except (WebSocketConnectionClosedException, BrokenPipeError):
+                error_level += 1
                 print("Lost connection to Slack. Reconnecting...")
+                slack_client = SlackClient(SLACK_BOT_TOKEN)
                 if not slack_client.rtm_connect(auto_reconnect=True):
                     print("Failed to reconnect to Slack")
-                    time.sleep(0.5)
+                    time.sleep(retry_delay)
+                    retry_delay = max(retry_delay*2,300)
                 else:
                     print("Reconnected to Slack")
+            except:
+                error_level += 100 # Don't want too many retry
+                print("unexpected error:")
+                print(traceback.format_exc())
+                if (error_level < max_error):
+                    print("Trying to continue by ignoring the error")
+
     else:
         print("Connection failed. Invalid Slack token or bot ID?")
