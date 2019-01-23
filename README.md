@@ -8,7 +8,7 @@ A Slack bot for personalized, filtered and trackable arXiv output.
 
 - To start, [web sign in](https://slack.com) to your user account corresponding to the Slack workspace where you would like to install paperbot.
 - Create a [new Slack App](https://api.slack.com/apps?new_app=1). In the pop-up window, set 'paperbot' as **App Name** and choose your **Development Slack Workspace**. 
-- Choose **paperbot** in the [Apps page](https://api.slack.com/apps/), and click on **Bot Users** from the menu at the left below "Features". Now select **Add a Bot User** and choose the bot's **Display name**. Finally click on **Add Bot User** and **Save Changes**.
+- Choose **paperbot** in the [Apps page](https://api.slack.com/apps/), and click on **Bot Users** from the menu at the left below "Features". Now select **Add a Bot User** and choose the bot's **Display name**. Finally, click on **Add Bot User** and **Save Changes**.
 - In the current window, choose **Install App** from the menu at the left below "Settings". Click on **Install App to Workspace** and **Authorize**. Copy the **Bot User OAuth Access Token** and save it somewhere to use later. 
 - Open the web-based [Slack App](https://slack.com) corresponding to your workspace and create a new channel. Invite `paperbot` to this channel as if you were inviting another workspace user to it. If you now click on the address bar of your web browser, you will note that it looks like this: https://yourworkspace.slack.com/messages/CHANNEL_ID/something_else. Copy the **CHANNEL_ID** variable and save it somewhere to use later.
 - Install requirements by executing `pip install -r requirements.txt` on a terminal.
