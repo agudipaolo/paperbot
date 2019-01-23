@@ -29,26 +29,26 @@ In `config.py`, change the variable `arxiv_sections=[quant-ph, cond-mat]` to inc
 
 **Build the keywords and authors list**
 
-Paperbot stores keywords that are used to identify interesting preprints. The keywords list can be build manually by executing the command `@paperbot add some_keyword` on Slack. This adds some_keyword to your keywords list, which can be printed executing "@paperbot list" on Slack.
+Paperbot stores keywords that are used to identify interesting preprints. The keywords list can be built manually by executing the command `@paperbot add some_keyword` on Slack. This adds some_keyword to your keywords list, which can be printed executing "@paperbot list" on Slack.
 
-Paperbot also includes an authors list which can be built manually. This is done by executing the command `@paperbot add_author some_author` on Slack. Executing `@paperbot authors` on Slack prints the authors list. 
+Paperbot also provides a method to generate an author list automatically. This is an important feature that helps to easily build a powerful preprint filter. It requires the definition of a few root keywords, such as 'superconducting qubit', 'quantum optics', and 'quantum information'. Executing the command `@paperbot build 2018 ['superconducting qubit', 'quantum optics', 'quantum information'] threshold` on Slack, paperbot searches through the arXiv papers submitted in '2018' and saving the name of the authors that have at least a 'threshold' number of papers including any of the root keywords in its title or abstract. The result of further executions of the `build` command is always appended to the author list after removing duplicates. In particular, running `build` every new year keeps the author list up-to-date. 
 
-Paperbot provides a method to generate the author list automatically. This is an important feature that helps to easily build a powerful preprint filter. It requires the definition of a few root keywords, such as 'superconducting qubit', 'quantum optics', and 'quantum information'. Executing the command `@paperbot build 2018 ['superconducting qubit', 'quantum optics', 'quantum information'] threshold` on Slack, paperbot searchs day-by-day over all arXiv papers submitted in '2018', and saves the name of the authors that have at least a 'threshold' number of papers including any of the root keywords in its title or abstract. The result of further executions of the `build` command is always appended to the author list after removing duplicates. In particular, running `build` every new year keeps the author list up-to-date. 
+Authors can also be manually added to the author list. This is done by executing the command `@paperbot add_author some_author` on Slack. Moreover, executing `@paperbot authors` on Slack prints the author list. 
 
-**Define your favourite authors to be hightlighted**
+**Define your favorite authors to be hightlighted**
 
-Parperbot can store the names of your favourite authors. If a new arXiv preprint includes one or more of such names, paperbot highlights the preprint with symbols that you can choose. For instance, executing on Slack the command `@paperbot add_special michel devoret, :tada:, :tada:` stores 'Michel Devoret' as favourite author. Next time that a preprint is submitted with him as an author, it will be posted and highlighted with :tada:. Note that your favourite authors must also be included in the authors list, and that paperbot performs a case-insensitive search. 
+Parperbot can store the names of your favorite authors. If a new arXiv preprint includes one or more of such names, paperbot highlights the preprint with symbols that you can choose. For instance, executing on Slack the command `@paperbot add_special michel devoret, :tada:, :tada:` stores 'Michel Devoret' as favourite author. Next time that a preprint is submitted with him as an author, it will be posted and highlighted with :tada:. Note that your favorite authors must also be included in the authors list, and that paperbot performs a case-insensitive search. 
 
 ## Usage:
 
 Doing `@paperbot paper` on Slack prints todays' arxiv papers. The full call is `@paperbot paper sections=[quant-ph, cond-mat] keywords=[qubit, superconductor] author=[A. Blais, Michel Devoret] span=1`. Here, the command output shows arXiv preprints from the sections 'sections', containing the keywords 'keywords' from the authors 'authors'. Span is the number of days from today to fetch papers. You can also set the span as dates: begin=YYYY-MM-DD end=YYYY-MM-DD.
 
-When not specificly given, keywords and authors are taken from internal keywords lists. You can see and add elements to those lists with: "add","list","add_author","authors".
+When not specifically given, keywords and authors are taken from internal keywords lists. You can see and add elements to those lists with: "add","list","add_author","authors".
 
 Note that for unknown reasons, paperbot Salck App status might appear as 'offline' while being online and working correctly. 
 
 A preview of the links posted by paperbot will appear by default on Slack. This feature can be [disabled individually](https://get.slack.help/hc/en-us/articles/204399343-Share-links-and-set-preview-preferences) by the workspace users, or [fully deactivated](https://get.slack.help/hc/en-us/articles/360001502048-Manage-link-previews-for-your-workspace) by the workspace administrator. 
 
-Take a look at `config.py`, where you can set shortcut for prefered options, change the calls and set commands to be at set times. For more information, execute `@paperbot help` on Slack!
+Take a look at `config.py`, where you can set a shortcut for preferred options, change the calls and set commands to be at set times. For more information, execute `@paperbot help` on Slack!
 
 by [TheSQuaD team](https://www.physique.usherbrooke.ca/blais/index.php?sec=accueil&lan=EN) (Theory of Superconducting Quantum Devices).
