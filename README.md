@@ -2,6 +2,8 @@
 
 A Slack bot for personalized, filtered and trackable arXiv output.
 
+![paperbot_output](https://user-images.githubusercontent.com/6580743/51612094-bfc63b00-1eee-11e9-96ae-cf4297daaa4e.png)
+
 ## Installation:
 
 - To start, [web sign in](https://slack.com) to your user account corresponding to the Slack workspace where you would like to install paperbot.
