@@ -2,6 +2,7 @@ import os
 import re
 import time
 import config
+import traceback
 import websocket
 import numpy as np
 from websocket import *
