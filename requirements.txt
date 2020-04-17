@@ -5,6 +5,7 @@
 
 # Neural net and related libraries.
 websocket
+websocket-client
 slackclient
 bs4
 urllib
